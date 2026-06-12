@@ -4,7 +4,12 @@
     <button wx:if="{{cart.length}}" class="clear-button" size="mini" bindtap="clearCart">Vaciar</button>
   </view>
 
-  <view wx:if="{{!cart.length}}" class="state">Todavia no hay productos en el carrito.</view>
+  <view wx:if="{{loading}}" class="cart-loading">
+    <view class="spinner"></view>
+    <text class="loading-text">Cargando carrito...</text>
+  </view>
+
+  <view wx:elif="{{!cart.length}}" class="state">Todavia no hay productos en el carrito.</view>
 
   <view wx:else class="cart-content">
     <view wx:for="{{cart}}" wx:key="id" class="cart-item">

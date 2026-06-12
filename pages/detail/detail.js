@@ -4,12 +4,14 @@ Page({
   data: {
     id: null,
     product: null,
-    loading: false,
+    loading: true,
     error: '',
     cartCount: 0
   },
 
   onLoad(options) {
+    wx.hideLoading();
+
     this.setData({
       id: Number(options.id)
     });
@@ -29,10 +31,13 @@ Page({
   loadProduct() {
     if (!this.data.id) {
       this.setData({
+        loading: false,
         error: 'No se recibio el identificador del producto.'
       });
       return;
     }
+
+    wx.showNavigationBarLoading();
 
     this.setData({
       loading: true,
@@ -61,6 +66,9 @@ Page({
           loading: false,
           error: 'Error de conexion al obtener el detalle.'
         });
+      },
+      complete: () => {
+        wx.hideNavigationBarLoading();
       }
     });
   },
@@ -82,8 +90,15 @@ Page({
   },
 
   goToCart() {
+    wx.showLoading({
+      title: 'Cargando',
+      mask: true
+    });
     wx.navigateTo({
-      url: '/pages/cart/cart'
+      url: '/pages/cart/cart',
+      fail: () => {
+        wx.hideLoading();
+      }
     });
   }
 });

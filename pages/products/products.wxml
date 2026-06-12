@@ -5,7 +5,7 @@
   </view>
 
   <view wx:if="{{loading}}" class="product-list skeleton-list">
-    <view wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="*this" class="product-card skeleton-card">
+    <view wx:for="{{skeletonItems}}" wx:key="*this" class="product-card skeleton-card">
       <view class="skeleton-block skeleton-image"></view>
       <view class="skeleton-info">
         <view class="skeleton-block skeleton-line title-line"></view>

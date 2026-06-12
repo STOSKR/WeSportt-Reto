@@ -3,9 +3,10 @@ const { countItems, getCart } = require('../../utils/cart');
 Page({
   data: {
     products: [],
-    loading: false,
+    loading: true,
     error: '',
-    cartCount: 0
+    cartCount: 0,
+    skeletonItems: [1, 2, 3, 4, 5]
   },
 
   onLoad() {
@@ -23,6 +24,8 @@ Page({
   },
 
   loadProducts() {
+    wx.showNavigationBarLoading();
+
     this.setData({
       loading: true,
       error: ''
@@ -50,20 +53,37 @@ Page({
           loading: false,
           error: 'Error de conexion al obtener los productos.'
         });
+      },
+      complete: () => {
+        wx.hideNavigationBarLoading();
       }
     });
   },
 
   goToDetail(event) {
     const { id } = event.currentTarget.dataset;
+    wx.showLoading({
+      title: 'Cargando',
+      mask: true
+    });
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`
+      url: `/pages/detail/detail?id=${id}`,
+      fail: () => {
+        wx.hideLoading();
+      }
     });
   },
 
   goToCart() {
+    wx.showLoading({
+      title: 'Cargando',
+      mask: true
+    });
     wx.navigateTo({
-      url: '/pages/cart/cart'
+      url: '/pages/cart/cart',
+      fail: () => {
+        wx.hideLoading();
+      }
     });
   }
 });
