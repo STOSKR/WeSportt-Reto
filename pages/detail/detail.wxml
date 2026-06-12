@@ -1,0 +1,26 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="state">Cargando detalle...</view>
+
+  <view wx:elif="{{error}}" class="state error">
+    <text>{{error}}</text>
+    <button class="retry-button" size="mini" bindtap="loadProduct">Reintentar</button>
+  </view>
+
+  <view wx:elif="{{product}}" class="detail">
+    <image class="detail-image" src="{{product.image}}" mode="aspectFit" />
+    <view class="detail-body">
+      <text class="category">{{product.category}}</text>
+      <text class="title">{{product.title}}</text>
+      <text class="price">${{product.price}}</text>
+      <text class="description">{{product.description}}</text>
+      <text wx:if="{{product.rating}}" class="rating">
+        Valoracion: {{product.rating.rate}} / 5 ({{product.rating.count}} reviews)
+      </text>
+    </view>
+
+    <view class="actions">
+      <button class="primary-button" bindtap="addCurrentProductToCart">Anadir al carrito</button>
+      <button class="secondary-button" bindtap="goToCart">Ver carrito {{cartCount}}</button>
+    </view>
+  </view>
+</view>

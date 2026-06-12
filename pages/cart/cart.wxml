@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="cart-header">
+    <text class="heading">Carrito</text>
+    <button wx:if="{{cart.length}}" class="clear-button" size="mini" bindtap="clearCart">Vaciar</button>
+  </view>
+
+  <view wx:if="{{!cart.length}}" class="state">Todavia no hay productos en el carrito.</view>
+
+  <view wx:else class="cart-content">
+    <view wx:for="{{cart}}" wx:key="id" class="cart-item">
+      <image class="cart-image" src="{{item.image}}" mode="aspectFit" />
+      <view class="cart-info">
+        <text class="cart-title">{{item.title}}</text>
+        <text class="cart-meta">Cantidad: {{item.quantity}}</text>
+        <text class="price">${{item.price}}</text>
+      </view>
+    </view>
+
+    <view class="total-row">
+      <text>Total</text>
+      <text class="price">${{total}}</text>
+    </view>
+  </view>
+</view>

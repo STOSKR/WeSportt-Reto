@@ -1,0 +1,72 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 22rpx;
+}
+
+.detail-image {
+  width: 100%;
+  height: 520rpx;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+  padding: 24rpx;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.category {
+  color: #52606d;
+  font-size: 24rpx;
+  text-transform: uppercase;
+}
+
+.title {
+  color: #1f2933;
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.description,
+.rating {
+  color: #3e4c59;
+  font-size: 28rpx;
+  line-height: 1.55;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.primary-button,
+.secondary-button,
+.retry-button {
+  width: 100%;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+}
+
+.primary-button {
+  background: #087443;
+  color: #ffffff;
+}
+
+.secondary-button,
+.retry-button {
+  background: #1f2933;
+  color: #ffffff;
+}
+
+.retry-button {
+  margin: 20rpx auto 0;
+  width: auto;
+  font-size: 24rpx;
+}
