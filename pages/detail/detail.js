@@ -6,7 +6,8 @@ Page({
     product: null,
     loading: true,
     error: '',
-    cartCount: 0
+    cartCount: 0,
+    successMessageVisible: false
   },
 
   onLoad(options) {
@@ -85,13 +86,16 @@ Page({
 
     const cart = addToCart(this.data.product);
     this.setData({
-      cartCount: countItems(cart)
+      cartCount: countItems(cart),
+      successMessageVisible: true
     });
 
-    wx.showToast({
-      title: 'Anadido al carrito',
-      icon: 'success'
-    });
+    clearTimeout(this.successMessageTimer);
+    this.successMessageTimer = setTimeout(() => {
+      this.setData({
+        successMessageVisible: false
+      });
+    }, 1800);
   },
 
   goToCart() {
@@ -105,5 +109,9 @@ Page({
         wx.hideLoading();
       }
     });
+  },
+
+  onUnload() {
+    clearTimeout(this.successMessageTimer);
   }
 });

@@ -1,4 +1,9 @@
 <view class="page">
+  <view wx:if="{{successMessageVisible}}" class="success-banner">
+    <view class="success-icon">OK</view>
+    <text class="success-text">Producto anadido al carrito</text>
+  </view>
+
   <view wx:if="{{loading}}" class="detail skeleton-detail">
     <view class="skeleton-block skeleton-hero"></view>
     <view class="detail-body">
