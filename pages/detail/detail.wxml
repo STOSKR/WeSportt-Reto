@@ -5,8 +5,14 @@
   </view>
 
   <view wx:if="{{loading}}" class="detail skeleton-detail">
-    <view class="skeleton-block skeleton-hero"></view>
-    <view class="detail-body">
+    <view class="detail-hero-shell loading-card">
+      <view class="skeleton-block skeleton-hero"></view>
+      <view class="hero-loading-chip">
+        <view class="skeleton-block chip-dot"></view>
+        <view class="skeleton-block chip-line"></view>
+      </view>
+    </view>
+    <view class="detail-body loading-card">
       <view class="skeleton-block skeleton-line category-line"></view>
       <view class="skeleton-block skeleton-line title-line"></view>
       <view class="skeleton-block skeleton-line title-line secondary-title-line"></view>
@@ -15,7 +21,7 @@
       <view class="skeleton-block skeleton-line body-line"></view>
       <view class="skeleton-block skeleton-line body-line short-body-line"></view>
     </view>
-    <view class="actions">
+    <view class="actions skeleton-actions">
       <view class="skeleton-block skeleton-button"></view>
       <view class="skeleton-block skeleton-button secondary-button-placeholder"></view>
     </view>
@@ -41,6 +47,16 @@
     <view class="actions">
       <button class="primary-button" bindtap="addCurrentProductToCart">Anadir al carrito</button>
       <button class="secondary-button" bindtap="goToCart">Ver carrito {{cartCount}}</button>
+    </view>
+  </view>
+
+  <view wx:if="{{routeLoading}}" class="route-loading-overlay">
+    <view class="route-loading-panel">
+      <view class="route-loading-ring"></view>
+      <view class="route-loading-copy">
+        <text class="route-loading-title">Abriendo carrito</text>
+        <text class="route-loading-subtitle">Actualizando tus productos</text>
+      </view>
     </view>
   </view>
 </view>

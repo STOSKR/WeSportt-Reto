@@ -4,11 +4,14 @@ Page({
   data: {
     cart: [],
     loading: true,
-    total: '0.00'
+    total: '0.00',
+    skeletonItems: [1, 2, 3]
   },
 
   onShow() {
-    wx.hideLoading();
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 220);
     this.loadCart();
   },
 
@@ -26,7 +29,7 @@ Page({
         loading: false,
         total: total.toFixed(2)
       });
-    }, 120);
+    }, 520);
   },
 
   clearCart() {

@@ -6,6 +6,9 @@ Page({
     loading: true,
     error: '',
     cartCount: 0,
+    routeLoading: false,
+    routeLoadingTitle: '',
+    routeLoadingSubtitle: '',
     skeletonItems: [1, 2, 3, 4, 5]
   },
 
@@ -14,6 +17,9 @@ Page({
   },
 
   onShow() {
+    this.setData({
+      routeLoading: false
+    });
     this.refreshCartCount();
   },
 
@@ -62,28 +68,50 @@ Page({
 
   goToDetail(event) {
     const { id } = event.currentTarget.dataset;
-    wx.showLoading({
-      title: 'Cargando producto',
-      mask: true
-    });
-    wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`,
-      fail: () => {
-        wx.hideLoading();
-      }
+    this.setData({
+      routeLoading: true,
+      routeLoadingTitle: 'Abriendo producto',
+      routeLoadingSubtitle: 'Preparando la ficha'
+    }, () => {
+      setTimeout(() => {
+        wx.showLoading({
+          title: 'Cargando producto',
+          mask: true
+        });
+        wx.navigateTo({
+          url: `/pages/detail/detail?id=${id}`,
+          fail: () => {
+            wx.hideLoading();
+            this.setData({
+              routeLoading: false
+            });
+          }
+        });
+      }, 80);
     });
   },
 
   goToCart() {
-    wx.showLoading({
-      title: 'Cargando',
-      mask: true
-    });
-    wx.navigateTo({
-      url: '/pages/cart/cart',
-      fail: () => {
-        wx.hideLoading();
-      }
+    this.setData({
+      routeLoading: true,
+      routeLoadingTitle: 'Abriendo carrito',
+      routeLoadingSubtitle: 'Actualizando tus productos'
+    }, () => {
+      setTimeout(() => {
+        wx.showLoading({
+          title: 'Abriendo carrito',
+          mask: true
+        });
+        wx.navigateTo({
+          url: '/pages/cart/cart',
+          fail: () => {
+            wx.hideLoading();
+            this.setData({
+              routeLoading: false
+            });
+          }
+        });
+      }, 80);
     });
   }
 });

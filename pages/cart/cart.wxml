@@ -4,9 +4,28 @@
     <button wx:if="{{cart.length}}" class="clear-button" size="mini" bindtap="clearCart">Vaciar</button>
   </view>
 
-  <view wx:if="{{loading}}" class="cart-loading">
-    <view class="spinner"></view>
-    <text class="loading-text">Cargando carrito...</text>
+  <view wx:if="{{loading}}" class="cart-content cart-skeleton">
+    <view class="cart-loading-summary loading-card">
+      <view class="summary-dot"></view>
+      <view class="summary-copy">
+        <text class="summary-title">Actualizando carrito</text>
+        <text class="summary-subtitle">Cantidades y total preparados</text>
+      </view>
+    </view>
+
+    <view wx:for="{{skeletonItems}}" wx:key="*this" class="cart-item skeleton-cart-item loading-card">
+      <view class="skeleton-block skeleton-cart-image"></view>
+      <view class="cart-info skeleton-cart-info">
+        <view class="skeleton-block skeleton-line title-line"></view>
+        <view class="skeleton-block skeleton-line meta-line"></view>
+        <view class="skeleton-block skeleton-line price-line"></view>
+      </view>
+    </view>
+
+    <view class="total-row skeleton-total loading-card">
+      <view class="skeleton-block total-label-line"></view>
+      <view class="skeleton-block total-price-line"></view>
+    </view>
   </view>
 
   <view wx:elif="{{!cart.length}}" class="state">Todavia no hay productos en el carrito.</view>

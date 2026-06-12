@@ -5,12 +5,28 @@
   </view>
 
   <view wx:if="{{loading}}" class="product-list skeleton-list">
-    <view wx:for="{{skeletonItems}}" wx:key="*this" class="product-card skeleton-card">
-      <view class="skeleton-block skeleton-image"></view>
+    <view class="loading-brief loading-card">
+      <view class="loading-mark">
+        <view class="loading-mark-core"></view>
+      </view>
+      <view class="loading-copy">
+        <text class="loading-title">Preparando catalogo</text>
+        <text class="loading-subtitle">Imagenes, precios y detalles casi listos</text>
+      </view>
+    </view>
+
+    <view wx:for="{{skeletonItems}}" wx:key="*this" class="product-card skeleton-card loading-card">
+      <view class="skeleton-block skeleton-image">
+        <view class="skeleton-image-dot"></view>
+      </view>
       <view class="skeleton-info">
+        <view class="skeleton-block skeleton-line eyebrow-line"></view>
         <view class="skeleton-block skeleton-line title-line"></view>
         <view class="skeleton-block skeleton-line short-line"></view>
-        <view class="skeleton-block skeleton-line price-line"></view>
+        <view class="skeleton-row">
+          <view class="skeleton-block skeleton-line price-line"></view>
+          <view class="skeleton-block skeleton-pill"></view>
+        </view>
       </view>
     </view>
   </view>
@@ -32,6 +48,16 @@
       <view class="product-info">
         <text class="product-title">{{item.title}}</text>
         <text class="price">${{item.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{routeLoading}}" class="route-loading-overlay">
+    <view class="route-loading-panel">
+      <view class="route-loading-ring"></view>
+      <view class="route-loading-copy">
+        <text class="route-loading-title">{{routeLoadingTitle}}</text>
+        <text class="route-loading-subtitle">{{routeLoadingSubtitle}}</text>
       </view>
     </view>
   </view>
