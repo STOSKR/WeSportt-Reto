@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/products/products",
+    "pages/detail/detail",
+    "pages/cart/cart"
+  ],
+  "window": {
+    "navigationBarTitleText": "WeSportt Reto",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f6f7f9"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

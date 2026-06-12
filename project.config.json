@@ -1,0 +1,15 @@
+{
+  "description": "WeSportt Reto - Bloque 1",
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "WeSportt-Reto",
+  "miniprogramRoot": "./",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true
+  },
+  "condition": {}
+}
