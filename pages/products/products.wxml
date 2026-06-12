@@ -4,7 +4,16 @@
     <button class="cart-button" size="mini" bindtap="goToCart">Carrito {{cartCount}}</button>
   </view>
 
-  <view wx:if="{{loading}}" class="state">Cargando productos...</view>
+  <view wx:if="{{loading}}" class="product-list skeleton-list">
+    <view wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="*this" class="product-card skeleton-card">
+      <view class="skeleton-block skeleton-image"></view>
+      <view class="skeleton-info">
+        <view class="skeleton-block skeleton-line title-line"></view>
+        <view class="skeleton-block skeleton-line short-line"></view>
+        <view class="skeleton-block skeleton-line price-line"></view>
+      </view>
+    </view>
+  </view>
 
   <view wx:elif="{{error}}" class="state error">
     <text>{{error}}</text>

@@ -1,5 +1,20 @@
 <view class="page">
-  <view wx:if="{{loading}}" class="state">Cargando detalle...</view>
+  <view wx:if="{{loading}}" class="detail skeleton-detail">
+    <view class="skeleton-block skeleton-hero"></view>
+    <view class="detail-body">
+      <view class="skeleton-block skeleton-line category-line"></view>
+      <view class="skeleton-block skeleton-line title-line"></view>
+      <view class="skeleton-block skeleton-line title-line secondary-title-line"></view>
+      <view class="skeleton-block skeleton-line price-line"></view>
+      <view class="skeleton-block skeleton-line body-line"></view>
+      <view class="skeleton-block skeleton-line body-line"></view>
+      <view class="skeleton-block skeleton-line body-line short-body-line"></view>
+    </view>
+    <view class="actions">
+      <view class="skeleton-block skeleton-button"></view>
+      <view class="skeleton-block skeleton-button secondary-button-placeholder"></view>
+    </view>
+  </view>
 
   <view wx:elif="{{error}}" class="state error">
     <text>{{error}}</text>
