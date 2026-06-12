@@ -1,9 +1,4 @@
 <view class="page">
-  <view wx:if="{{successMessageVisible}}" class="success-banner">
-    <view class="success-icon">OK</view>
-    <text class="success-text">Producto anadido al carrito</text>
-  </view>
-
   <view wx:if="{{loading}}" class="detail skeleton-detail">
     <view class="detail-hero-shell loading-card">
       <view class="skeleton-block skeleton-hero"></view>
@@ -45,7 +40,7 @@
     </view>
 
     <view class="actions">
-      <button class="primary-button" bindtap="addCurrentProductToCart">Anadir al carrito</button>
+      <button class="primary-button" bindtap="addCurrentProductToCart">Añadir al carrito</button>
       <button class="secondary-button" bindtap="goToCart">Ver carrito {{cartCount}}</button>
     </view>
   </view>

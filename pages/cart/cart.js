@@ -1,4 +1,4 @@
-const { clearCart, getCart } = require('../../utils/cart');
+const { clearCart, getCartAsync } = require('../../utils/cart');
 
 Page({
   data: {
@@ -9,9 +9,6 @@ Page({
   },
 
   onShow() {
-    setTimeout(() => {
-      wx.hideLoading();
-    }, 220);
     this.loadCart();
   },
 
@@ -20,16 +17,14 @@ Page({
       loading: true
     });
 
-    const cart = getCart();
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-    setTimeout(() => {
+    getCartAsync((cart) => {
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       this.setData({
         cart,
         loading: false,
         total: total.toFixed(2)
       });
-    }, 520);
+    });
   },
 
   clearCart() {

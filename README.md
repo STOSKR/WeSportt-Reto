@@ -9,7 +9,7 @@ Miniprogram de WeChat que consume una API publica de productos, muestra un lista
 - Mensaje de error y boton de reintento si falla la llamada.
 - Navegacion al detalle con paso del parametro `id`.
 - Detalle completo del producto desde `https://fakestoreapi.com/products/{id}`.
-- Boton "Anadir al carrito".
+- Boton "Añadir al carrito".
 - Persistencia del carrito con `wx.setStorageSync` y lectura con `wx.getStorageSync`.
 - Pagina de carrito para comprobar que los productos se mantienen entre navegaciones.
 
@@ -51,7 +51,7 @@ El proyecto esta separado siguiendo la estructura habitual de un miniprogram de 
 
 - `app.js`, `app.json` y `app.wxss`: configuracion global, paginas registradas y estilos base.
 - `pages/products`: pagina principal con el listado de productos y la llamada a la API publica.
-- `pages/detail`: pagina de detalle, recibe el `id` por parametro y permite anadir el producto al carrito.
+- `pages/detail`: pagina de detalle, recibe el `id` por parametro y permite añadir el producto al carrito.
 - `pages/cart`: pagina auxiliar para comprobar que el carrito persiste entre navegaciones.
 - `utils/cart.js`: modulo reutilizable para leer, guardar, contar y limpiar productos del carrito usando storage local.
 

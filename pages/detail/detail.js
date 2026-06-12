@@ -7,7 +7,6 @@ Page({
     loading: true,
     error: '',
     cartCount: 0,
-    successMessageVisible: false,
     routeLoading: false
   },
 
@@ -15,9 +14,6 @@ Page({
     this.setData({
       id: Number(options.id)
     });
-    setTimeout(() => {
-      wx.hideLoading();
-    }, 220);
     this.loadProduct();
   },
 
@@ -86,41 +82,27 @@ Page({
 
     const cart = addToCart(this.data.product);
     this.setData({
-      cartCount: countItems(cart),
-      successMessageVisible: true
+      cartCount: countItems(cart)
     });
 
-    clearTimeout(this.successMessageTimer);
-    this.successMessageTimer = setTimeout(() => {
-      this.setData({
-        successMessageVisible: false
-      });
-    }, 1800);
+    wx.showToast({
+      title: 'Producto anadido',
+      icon: 'success'
+    });
   },
 
   goToCart() {
     this.setData({
       routeLoading: true
     }, () => {
-      setTimeout(() => {
-        wx.showLoading({
-          title: 'Abriendo carrito',
-          mask: true
-        });
-        wx.navigateTo({
-          url: '/pages/cart/cart',
-          fail: () => {
-            wx.hideLoading();
-            this.setData({
-              routeLoading: false
-            });
-          }
-        });
-      }, 80);
+      wx.navigateTo({
+        url: '/pages/cart/cart',
+        fail: () => {
+          this.setData({
+            routeLoading: false
+          });
+        }
+      });
     });
-  },
-
-  onUnload() {
-    clearTimeout(this.successMessageTimer);
   }
 });

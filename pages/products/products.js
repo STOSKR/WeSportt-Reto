@@ -73,21 +73,14 @@ Page({
       routeLoadingTitle: 'Abriendo producto',
       routeLoadingSubtitle: 'Preparando la ficha'
     }, () => {
-      setTimeout(() => {
-        wx.showLoading({
-          title: 'Cargando producto',
-          mask: true
-        });
-        wx.navigateTo({
-          url: `/pages/detail/detail?id=${id}`,
-          fail: () => {
-            wx.hideLoading();
-            this.setData({
-              routeLoading: false
-            });
-          }
-        });
-      }, 80);
+      wx.navigateTo({
+        url: `/pages/detail/detail?id=${id}`,
+        fail: () => {
+          this.setData({
+            routeLoading: false
+          });
+        }
+      });
     });
   },
 
@@ -97,21 +90,14 @@ Page({
       routeLoadingTitle: 'Abriendo carrito',
       routeLoadingSubtitle: 'Actualizando tus productos'
     }, () => {
-      setTimeout(() => {
-        wx.showLoading({
-          title: 'Abriendo carrito',
-          mask: true
-        });
-        wx.navigateTo({
-          url: '/pages/cart/cart',
-          fail: () => {
-            wx.hideLoading();
-            this.setData({
-              routeLoading: false
-            });
-          }
-        });
-      }, 80);
+      wx.navigateTo({
+        url: '/pages/cart/cart',
+        fail: () => {
+          this.setData({
+            routeLoading: false
+          });
+        }
+      });
     });
   }
 });

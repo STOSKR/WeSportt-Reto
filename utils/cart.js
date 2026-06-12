@@ -5,6 +5,18 @@ function getCart() {
   return Array.isArray(cart) ? cart : [];
 }
 
+function getCartAsync(callback) {
+  wx.getStorage({
+    key: CART_STORAGE_KEY,
+    success: (res) => {
+      callback(Array.isArray(res.data) ? res.data : []);
+    },
+    fail: () => {
+      callback([]);
+    }
+  });
+}
+
 function saveCart(cart) {
   wx.setStorageSync(CART_STORAGE_KEY, cart);
   return cart;
@@ -42,5 +54,6 @@ module.exports = {
   clearCart,
   countItems,
   getCart,
+  getCartAsync,
   saveCart
 };
