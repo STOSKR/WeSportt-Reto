@@ -10,8 +10,6 @@ Page({
   },
 
   onLoad(options) {
-    wx.hideLoading();
-
     this.setData({
       id: Number(options.id)
     });
@@ -30,6 +28,8 @@ Page({
 
   loadProduct() {
     if (!this.data.id) {
+      wx.hideLoading();
+
       this.setData({
         loading: false,
         error: 'No se recibio el identificador del producto.'
@@ -38,6 +38,10 @@ Page({
     }
 
     wx.showNavigationBarLoading();
+    wx.showLoading({
+      title: 'Cargando producto',
+      mask: true
+    });
 
     this.setData({
       loading: true,
@@ -69,6 +73,7 @@ Page({
       },
       complete: () => {
         wx.hideNavigationBarLoading();
+        wx.hideLoading();
       }
     });
   },

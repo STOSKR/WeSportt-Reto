@@ -63,7 +63,7 @@ Page({
   goToDetail(event) {
     const { id } = event.currentTarget.dataset;
     wx.showLoading({
-      title: 'Cargando',
+      title: 'Cargando producto',
       mask: true
     });
     wx.navigateTo({
