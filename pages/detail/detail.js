@@ -7,6 +7,7 @@ Page({
     loading: true,
     error: '',
     cartCount: 0,
+    successMessageVisible: false,
     routeLoading: false
   },
 
@@ -19,6 +20,7 @@ Page({
 
   onShow() {
     this.setData({
+      successMessageVisible: false,
       routeLoading: false
     });
     this.refreshCartCount();
@@ -82,17 +84,20 @@ Page({
 
     const cart = addToCart(this.data.product);
     this.setData({
-      cartCount: countItems(cart)
+      cartCount: countItems(cart),
+      successMessageVisible: true
     });
+  },
 
-    wx.showToast({
-      title: 'Producto anadido',
-      icon: 'success'
+  dismissSuccessMessage() {
+    this.setData({
+      successMessageVisible: false
     });
   },
 
   goToCart() {
     this.setData({
+      successMessageVisible: false,
       routeLoading: true
     }, () => {
       wx.navigateTo({

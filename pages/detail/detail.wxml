@@ -45,6 +45,14 @@
     </view>
   </view>
 
+  <view wx:if="{{successMessageVisible}}" class="success-feedback" bindtap="dismissSuccessMessage">
+    <view class="success-check">✓</view>
+    <view class="success-copy">
+      <text class="success-title">Producto añadido al carrito</text>
+      <text class="success-subtitle">Ahora tienes {{cartCount}} en el carrito</text>
+    </view>
+  </view>
+
   <view wx:if="{{routeLoading}}" class="route-loading-overlay">
     <view class="route-loading-panel">
       <view class="route-loading-ring"></view>

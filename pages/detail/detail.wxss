@@ -75,6 +75,60 @@
   font-size: 24rpx;
 }
 
+.success-feedback {
+  position: fixed;
+  right: 24rpx;
+  bottom: calc(34rpx + env(safe-area-inset-bottom));
+  left: 24rpx;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-sizing: border-box;
+  min-height: 108rpx;
+  padding: 22rpx 24rpx;
+  border: 1rpx solid #b9dcc7;
+  border-radius: 8rpx;
+  background: #edf8f0;
+  box-shadow: 0 18rpx 44rpx rgba(29, 40, 34, 0.18);
+}
+
+.success-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54rpx;
+  height: 54rpx;
+  flex: none;
+  border-radius: 50%;
+  background: #087443;
+  color: #fbfcf8;
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.success-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4rpx;
+  min-width: 0;
+}
+
+.success-title {
+  color: #1d2822;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.success-subtitle {
+  color: #59665f;
+  font-size: 24rpx;
+  line-height: 1.35;
+}
+
 .skeleton-detail .detail-body {
   gap: 18rpx;
 }

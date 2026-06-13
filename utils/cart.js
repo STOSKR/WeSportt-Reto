@@ -45,6 +45,28 @@ function countItems(cart) {
   return cart.reduce((total, item) => total + item.quantity, 0);
 }
 
+function updateCartItemQuantity(productId, quantity) {
+  const cart = getCart();
+  const nextCart = cart
+    .map((item) => {
+      if (item.id !== productId) {
+        return item;
+      }
+
+      return {
+        ...item,
+        quantity
+      };
+    })
+    .filter((item) => item.quantity > 0);
+
+  return saveCart(nextCart);
+}
+
+function removeFromCart(productId) {
+  return updateCartItemQuantity(productId, 0);
+}
+
 function clearCart() {
   return saveCart([]);
 }
@@ -55,5 +77,7 @@ module.exports = {
   countItems,
   getCart,
   getCartAsync,
-  saveCart
+  removeFromCart,
+  saveCart,
+  updateCartItemQuantity
 };

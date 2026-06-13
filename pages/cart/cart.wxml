@@ -1,7 +1,10 @@
-<view class="page">
+<view class="page cart-page">
   <view class="cart-header">
-    <text class="heading">Carrito</text>
-    <button wx:if="{{cart.length}}" class="clear-button" size="mini" bindtap="clearCart">Vaciar</button>
+    <view class="header-copy">
+      <text class="heading">Carrito</text>
+      <text wx:if="{{!loading && cart.length}}" class="header-meta">{{itemCount}} productos</text>
+    </view>
+    <button wx:if="{{!loading && cart.length}}" class="clear-button" size="mini" bindtap="clearCart">Vaciar</button>
   </view>
 
   <view wx:if="{{loading}}" class="cart-content cart-skeleton">
@@ -22,27 +25,58 @@
       </view>
     </view>
 
-    <view class="total-row skeleton-total loading-card">
+    <view class="checkout-bar loading-card">
       <view class="skeleton-block total-label-line"></view>
       <view class="skeleton-block total-price-line"></view>
     </view>
   </view>
 
-  <view wx:elif="{{!cart.length}}" class="state">Todavia no hay productos en el carrito.</view>
+  <view wx:elif="{{!cart.length}}" class="empty-cart state">
+    <text class="empty-title">Tu carrito esta vacio</text>
+    <text class="empty-copy">Guarda aqui los productos que quieras revisar antes de comprar.</text>
+    <button class="secondary-button empty-button" bindtap="goToProducts">Ver productos</button>
+  </view>
 
-  <view wx:else class="cart-content">
-    <view wx:for="{{cart}}" wx:key="id" class="cart-item">
-      <image class="cart-image" src="{{item.image}}" mode="aspectFit" />
-      <view class="cart-info">
-        <text class="cart-title">{{item.title}}</text>
-        <text class="cart-meta">Cantidad: {{item.quantity}}</text>
-        <text class="price">${{item.price}}</text>
+  <view wx:else class="cart-content cart-has-items">
+    <view class="cart-summary">
+      <view class="summary-stat">
+        <text class="summary-label">Articulos</text>
+        <text class="summary-value">{{itemCount}}</text>
+      </view>
+      <view class="summary-stat">
+        <text class="summary-label">Total</text>
+        <text class="summary-value price">${{total}}</text>
       </view>
     </view>
 
-    <view class="total-row">
-      <text>Total</text>
-      <text class="price">${{total}}</text>
+    <view wx:for="{{cart}}" wx:key="id" class="cart-item">
+      <image class="cart-image" src="{{item.image}}" mode="aspectFit" />
+      <view class="cart-info">
+        <view class="item-topline">
+          <text class="cart-title">{{item.title}}</text>
+          <button class="remove-button" size="mini" data-id="{{item.id}}" bindtap="removeItem">Quitar</button>
+        </view>
+        <view class="item-footer">
+          <view class="quantity-control">
+            <button class="qty-button" size="mini" data-id="{{item.id}}" data-quantity="{{item.quantity}}" bindtap="decreaseQuantity">-</button>
+            <text class="quantity-value">{{item.quantity}}</text>
+            <button class="qty-button" size="mini" data-id="{{item.id}}" data-quantity="{{item.quantity}}" bindtap="increaseQuantity">+</button>
+          </view>
+          <view class="item-pricing">
+            <text class="unit-price">${{item.price}}</text>
+            <text class="price subtotal-price">${{item.subtotal}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="checkout-spacer"></view>
+    <view class="checkout-bar">
+      <view class="checkout-copy">
+        <text class="checkout-label">Total</text>
+        <text class="checkout-note">{{itemCount}} productos</text>
+      </view>
+      <text class="checkout-total price">${{total}}</text>
     </view>
   </view>
 </view>
